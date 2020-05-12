@@ -2,6 +2,7 @@ package com.deliverylocator.views.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -31,13 +32,15 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        long count = DeliveryController.getCount(this);
+        new Handler().postDelayed(() -> {
+            long count = DeliveryController.getCount(this);
 
-        if (count > 1L) {
-            moveToMain();
-        } else {
-            getAllDataFromServer();
-        }
+            if (count > 1L) {
+                moveToMain();
+            } else {
+                getAllDataFromServer();
+            }
+        }, 500);
     }
 
     private void getAllDataFromServer() {
