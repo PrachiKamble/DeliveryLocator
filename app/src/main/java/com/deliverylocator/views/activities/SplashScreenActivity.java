@@ -2,8 +2,8 @@ package com.deliverylocator.views.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -32,15 +32,16 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        new Handler().postDelayed(() -> {
-            long count = DeliveryController.getCount(this);
-
-            if (count > 1L) {
-                moveToMain();
-            } else {
-                getAllDataFromServer();
-            }
-        }, 500);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        long count = DeliveryController.getCount(this);
+        getAllDataFromServer();
+//        if (count > 1L) {
+//            new Handler().postDelayed(() -> {
+//                moveToMain();
+//            }, 500);
+//        } else {
+//            getAllDataFromServer();
+//        }
     }
 
     private void getAllDataFromServer() {
@@ -53,12 +54,13 @@ public class SplashScreenActivity extends AppCompatActivity {
                     List<Delivery> deliveryList = new ArrayList<>();
                     if (deliveries != null && !deliveries.isEmpty()) {
                         for (DeliveryDTO deliveryDTO : deliveries) {
-                            LocationDTO locationDTO = deliveryDTO.getLocationDTO();
+                            LocationDTO locationDTO = deliveryDTO.getLocation();
                             if (locationDTO != null) {
                                 deliveryDTO.setLat(locationDTO.getLat());
                                 deliveryDTO.setLng(locationDTO.getLng());
                                 deliveryDTO.setAddress(locationDTO.getAddress());
                             }
+                            Log.e("onResponse: ", deliveryDTO.toString());
                             deliveryList.add(DtoToEntityConverter.getDelivery(deliveryDTO));
                         }
                         DeliveryController.saveAll(SplashScreenActivity.this, deliveryList);

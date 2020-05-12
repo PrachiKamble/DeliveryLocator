@@ -7,7 +7,7 @@ public class DeliveryDTO {
     private double lat;
     private double lng;
     private String address;
-    private LocationDTO locationDTO;
+    private LocationDTO location;
 
 
     @Override
@@ -19,6 +19,7 @@ public class DeliveryDTO {
                 ", lat=" + lat +
                 ", lng=" + lng +
                 ", address='" + address + '\'' +
+                ", locationDTO=" + location +
                 '}';
     }
 
@@ -70,11 +71,11 @@ public class DeliveryDTO {
         this.address = address;
     }
 
-    public void setLocationDTO(LocationDTO locationDTO) {
-        this.locationDTO = locationDTO;
+    public void setLocation(LocationDTO location) {
+        this.location = location;
     }
 
-    public LocationDTO getLocationDTO() {
-        return locationDTO;
+    public LocationDTO getLocation() {
+        return location;
     }
 }

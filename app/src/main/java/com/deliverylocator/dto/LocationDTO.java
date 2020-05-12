@@ -28,4 +28,13 @@ public class LocationDTO {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    @Override
+    public String toString() {
+        return "LocationDTO{" +
+                "lat=" + lat +
+                ", lng=" + lng +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }
