@@ -2,6 +2,7 @@ package com.deliverylocator.views.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -34,14 +35,12 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         long count = DeliveryController.getCount(this);
-        getAllDataFromServer();
-//        if (count > 1L) {
-//            new Handler().postDelayed(() -> {
-//                moveToMain();
-//            }, 500);
-//        } else {
-//            getAllDataFromServer();
-//        }
+//        getAllDataFromServer();
+        if (count > 1L) {
+            new Handler().postDelayed(this::moveToMain, 500);
+        } else {
+            getAllDataFromServer();
+        }
     }
 
     private void getAllDataFromServer() {
