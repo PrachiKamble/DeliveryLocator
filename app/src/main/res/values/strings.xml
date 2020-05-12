@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Delivery Locator</string>
+    <string name="delivery_list">Delivery List</string>
+    <string name="location">Location</string>
+    <string name="google_api_key">AIzaSyAa6pSTdQXcPxO1_3ZhTMAA-JrBoWXwQNQ</string>
+    <string name="locate_address">Locate Address</string>
+    <string name="server_error">Server Error</string>
+</resources>
